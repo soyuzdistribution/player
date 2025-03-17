@@ -1,8 +1,16 @@
 {
     "tracks": [
         {
+            "name": "8Amb1",
+            "filename": "music/8amb1.mp3"
+        },
+        {
             "name": "8Feb Cliche",
             "filename": "music/8feb cliche.mp3"
+        },
+        {
+            "name": "Dismade",
+            "filename": "music/dismade.mp3"
         },
         {
             "name": "Fuckeduptempowguitar",
@@ -23,6 +31,14 @@
         {
             "name": "Weird Arpeggios 68 Render2",
             "filename": "music/weird arpeggios 68 render2.mp3"
+        },
+        {
+            "name": "Декабрь4.1",
+            "filename": "music/декабрь4.1.mp3"
+        },
+        {
+            "name": "Октябрь2",
+            "filename": "music/октябрь2.mp3"
         }
     ]
 }
