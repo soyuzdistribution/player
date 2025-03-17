@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tahoma', sans-serif;
+    background: #236B8E url('https://i.imgur.com/Zk6TR5k.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+}
+
+.winxp-window {
+    background: #ECE9D8;
+    border: 1px solid #0054E3;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title-bar {
+    background: linear-gradient(to right, #0058EE, #3C9BF9);
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.title-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.title-bar-controls button {
+    width: 22px;
+    height: 22px;
+    border: 1px solid #fff;
+    background: linear-gradient(to bottom, #3C9BF9, #0058EE);
+    color: white;
+    font-family: 'Tahoma', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-bar-controls button:hover {
+    background: #FF3232;
+}
+
+.window-content {
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #848484;
+    margin: 2px;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.track {
+    padding: 0.5rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.track:hover {
+    background: #316AC5;
+    color: white;
+}
+
+.track-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.track-name {
+    font-size: 0.9rem;
+}
+
+.player {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.player.active {
+    display: flex;
+}
+
+.player-window {
+    width: 90%;
+    max-width: 400px;
+}
+
+.player-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.now-playing {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #000;
+}
+
+#current-track {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.winxp-button {
+    padding: 4px 12px;
+    background: linear-gradient(to bottom, #F6F6F6, #DEDEDE);
+    border: 1px solid #999;
+    border-radius: 3px;
+    color: #000;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.winxp-button:hover {
+    background: linear-gradient(to bottom, #E5F1FB, #B7DBF7);
+    border-color: #0078D7;
+}
+
+.winxp-button:active {
+    background: linear-gradient(to bottom, #B7DBF7, #E5F1FB);
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 16px;
+    background: #fff;
+    border: 1px solid #919191;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(to right, #3C9BF9, #0058EE);
+    width: 0;
+}
+
+#current-time,
+#duration {
+    font-size: 0.8rem;
+    color: #000;
+    font-family: 'Tahoma', sans-serif;
+    min-width: 45px;
+}
+
+.equalizer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 20px;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.player.active .equalizer {
+    opacity: 0.15;
+}
+
+.equalizer .bar {
+    width: 12px;
+    height: 100px;
+    background: #ff2d55;
+    border-radius: 6px;
+}
+
+.equalizer .bar:nth-child(1) {
+    animation: equalizer 1s ease-in-out infinite;
+}
+
+.equalizer .bar:nth-child(2) {
+    animation: equalizer 1s ease-in-out 0.2s infinite;
+}
+
+.equalizer .bar:nth-child(3) {
+    animation: equalizer 1s ease-in-out 0.4s infinite;
+}
+
+.equalizer .bar:nth-child(4) {
+    animation: equalizer 1s ease-in-out 0.6s infinite;
+}
+
+@keyframes equalizer {
+    0% {
+        height: 40px;
+    }
+    50% {
+        height: 100px;
+    }
+    100% {
+        height: 40px;
+    }
+} 

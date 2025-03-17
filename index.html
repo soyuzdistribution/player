@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOYUz MUSIK - Windows XP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container winxp-window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="icon" class="title-icon">
+                SOYUz Music Player
+            </div>
+            <div class="title-bar-controls">
+                <button class="minimize">_</button>
+                <button class="maximize">□</button>
+                <button class="close">×</button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="playlist">
+                <div class="track" data-src="music/weird arpeggios 68 render2.mp3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
+                    <span class="track-name">Weird Arpeggios 68</span>
+                </div>
+                <div class="track" data-src="music/noise normalised.mp3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
+                    <span class="track-name">Noise Normalised</span>
+                </div>
+                <div class="track" data-src="music/fuckeduptempowguitar.mp3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
+                    <span class="track-name">Fucked Up Tempo w/Guitar</span>
+                </div>
+                <div class="track" data-src="music/8feb cliche.mp3">
+                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
+                    <span class="track-name">8 Feb Cliche</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="player" id="player">
+            <div class="winxp-window player-window">
+                <div class="title-bar">
+                    <div class="title-bar-text">
+                        <img src="https://win98icons.alexmeub.com/icons/png/cd_music2-4.png" alt="icon" class="title-icon">
+                        Проигрыватель Windows Media
+                    </div>
+                    <div class="title-bar-controls">
+                        <button class="close-btn">×</button>
+                    </div>
+                </div>
+                <div class="window-content player-content">
+                    <div class="now-playing">Сейчас играет: <span id="current-track">-</span></div>
+                    <div class="controls">
+                        <button id="prev-btn" class="winxp-button">⏮</button>
+                        <button id="play-btn" class="winxp-button">▶</button>
+                        <button id="next-btn" class="winxp-button">⏭</button>
+                    </div>
+                    <div class="progress-container">
+                        <span id="current-time">0:00</span>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
