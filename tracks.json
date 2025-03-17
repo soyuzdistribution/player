@@ -1,6 +1,10 @@
 {
     "tracks": [
         {
+            "name": " Tape 05",
+            "filename": "music/ tape 05.mp3"
+        },
+        {
             "name": "8Amb1",
             "filename": "music/8amb1.mp3"
         },
@@ -15,6 +19,10 @@
         {
             "name": "Fuckeduptempowguitar",
             "filename": "music/fuckeduptempowguitar.mp3"
+        },
+        {
+            "name": "It Was Pretty Fun Yesterday...",
+            "filename": "music/it was pretty fun yesterday....mp3"
         },
         {
             "name": "Noise Normalised",
