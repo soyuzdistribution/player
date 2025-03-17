@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOYUz MUSIK - Windows XP</title>
+    <title>SOYUZ MEDIA DISTRIBUTION</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="title-bar">
             <div class="title-bar-text">
                 <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="icon" class="title-icon">
-                SOYUz Music Player
+                SOYUZ Music Player
             </div>
             <div class="title-bar-controls">
                 <button class="minimize">_</button>
@@ -20,23 +20,13 @@
             </div>
         </div>
         <div class="window-content">
-            <div class="playlist">
-                <div class="track" data-src="music/weird arpeggios 68 render2.mp3">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
-                    <span class="track-name">Weird Arpeggios 68</span>
-                </div>
-                <div class="track" data-src="music/noise normalised.mp3">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
-                    <span class="track-name">Noise Normalised</span>
-                </div>
-                <div class="track" data-src="music/fuckeduptempowguitar.mp3">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
-                    <span class="track-name">Fucked Up Tempo w/Guitar</span>
-                </div>
-                <div class="track" data-src="music/8feb cliche.mp3">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
-                    <span class="track-name">8 Feb Cliche</span>
-                </div>
+            <div class="playlist" id="playlist">
+                <!-- Треки будут добавлены через JavaScript -->
+            </div>
+            <div class="pagination">
+                <button class="winxp-button" id="prevPage">◀</button>
+                <span id="pageInfo">Страница 1 из 1</span>
+                <button class="winxp-button" id="nextPage">▶</button>
             </div>
         </div>
 
@@ -45,7 +35,7 @@
                 <div class="title-bar">
                     <div class="title-bar-text">
                         <img src="https://win98icons.alexmeub.com/icons/png/cd_music2-4.png" alt="icon" class="title-icon">
-                        Проигрыватель Windows Media
+                        Проигрыватель Soyuz Media
                     </div>
                     <div class="title-bar-controls">
                         <button class="close-btn">×</button>

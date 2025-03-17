@@ -255,4 +255,25 @@ body {
     100% {
         height: 40px;
     }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: #ECE9D8;
+    border-top: 1px solid #ccc;
+}
+
+.pagination button {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+}
+
+.pagination span {
+    font-size: 0.9rem;
+    color: #000;
 } 

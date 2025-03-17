@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const player = document.getElementById('player');
-    const tracks = document.querySelectorAll('.track');
+    const playlist = document.getElementById('playlist');
     const closeBtn = document.querySelector('.close-btn');
     const playBtn = document.getElementById('play-btn');
     const prevBtn = document.getElementById('prev-btn');
@@ -11,10 +11,82 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeElement = document.getElementById('current-time');
     const durationElement = document.getElementById('duration');
     const equalizer = document.querySelector('.equalizer');
-
+    
+    // Пагинация
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const pageInfoElement = document.getElementById('pageInfo');
+    
     let audio = new Audio();
     let currentTrackIndex = 0;
     let isPlaying = false;
+    let tracks = [];
+    let currentPage = 1;
+    const tracksPerPage = 10;
+
+    // Загрузка треков из JSON
+    fetch('tracks.json')
+        .then(response => response.json())
+        .then(data => {
+            tracks = data.tracks;
+            updatePagination();
+            displayTracks();
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки треков:', error);
+            playlist.innerHTML = '<div class="error">Ошибка загрузки треков</div>';
+        });
+
+    // Функция отображения треков для текущей страницы
+    function displayTracks() {
+        const startIndex = (currentPage - 1) * tracksPerPage;
+        const endIndex = startIndex + tracksPerPage;
+        const currentTracks = tracks.slice(startIndex, endIndex);
+
+        playlist.innerHTML = '';
+        currentTracks.forEach((track, index) => {
+            const trackElement = document.createElement('div');
+            trackElement.className = 'track';
+            trackElement.dataset.src = track.filename;
+            trackElement.innerHTML = `
+                <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
+                <span class="track-name">${track.name}</span>
+            `;
+            trackElement.addEventListener('click', () => {
+                currentTrackIndex = startIndex + index;
+                player.classList.add('active');
+                playTrack(currentTrackIndex);
+            });
+            playlist.appendChild(trackElement);
+        });
+    }
+
+    // Обновление информации о пагинации
+    function updatePagination() {
+        const totalPages = Math.ceil(tracks.length / tracksPerPage);
+        pageInfoElement.textContent = `Страница ${currentPage} из ${totalPages}`;
+        
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+    }
+
+    // Обработчики для пагинации
+    prevPageBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayTracks();
+            updatePagination();
+        }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(tracks.length / tracksPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayTracks();
+            updatePagination();
+        }
+    });
 
     // Функция управления эквалайзером
     function toggleEqualizer(play) {
@@ -46,25 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Воспроизведение трека
     function playTrack(index) {
         const track = tracks[index];
-        const trackSrc = track.dataset.src;
-        const trackName = track.querySelector('.track-name').textContent;
-
-        audio.src = trackSrc;
-        currentTrackElement.textContent = trackName;
+        audio.src = track.filename;
+        currentTrackElement.textContent = track.name;
         audio.play();
         isPlaying = true;
         playBtn.textContent = '⏸';
         toggleEqualizer(true);
     }
-
-    // Обработчики событий для треков
-    tracks.forEach((track, index) => {
-        track.addEventListener('click', () => {
-            currentTrackIndex = index;
-            player.classList.add('active');
-            playTrack(currentTrackIndex);
-        });
-    });
 
     // Закрытие плеера
     closeBtn.addEventListener('click', () => {

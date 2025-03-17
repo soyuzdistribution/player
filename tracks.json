@@ -1,0 +1,28 @@
+{
+    "tracks": [
+        {
+            "name": "8Feb Cliche",
+            "filename": "music/8feb cliche.mp3"
+        },
+        {
+            "name": "Fuckeduptempowguitar",
+            "filename": "music/fuckeduptempowguitar.mp3"
+        },
+        {
+            "name": "Noise Normalised",
+            "filename": "music/noise normalised.mp3"
+        },
+        {
+            "name": "Untitled",
+            "filename": "music/Untitled.mp3"
+        },
+        {
+            "name": "Untitled #2",
+            "filename": "music/untitled #2.mp3"
+        },
+        {
+            "name": "Weird Arpeggios 68 Render2",
+            "filename": "music/weird arpeggios 68 render2.mp3"
+        }
+    ]
+}
