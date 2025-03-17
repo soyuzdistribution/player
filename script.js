@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTracks.forEach((track, index) => {
             const trackElement = document.createElement('div');
             trackElement.className = 'track';
-            trackElement.dataset.src = track.filename;
             trackElement.innerHTML = `
                 <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd-4.png" alt="music" class="track-icon">
                 <span class="track-name">${track.name}</span>
@@ -118,9 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Воспроизведение трека
     function playTrack(index) {
         const track = tracks[index];
+        if (!track) return;
+        
         audio.src = track.filename;
         currentTrackElement.textContent = track.name;
-        audio.play();
+        
+        audio.play().catch(error => {
+            console.error('Ошибка воспроизведения:', error);
+            currentTrackElement.textContent = 'Ошибка воспроизведения';
+        });
+        
         isPlaying = true;
         playBtn.textContent = '⏸';
         toggleEqualizer(true);
