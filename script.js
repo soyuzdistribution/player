@@ -25,25 +25,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const tracksPerPage = 10;
 
     // Загрузка треков из JSON
-    fetch('tracks.json')
-        .then(response => response.json())
-        .then(data => {
-            tracks = data.tracks;
-            updatePagination();
-            displayTracks();
-        })
-        .catch(error => {
-            console.error('Ошибка загрузки треков:', error);
-            playlist.innerHTML = '<div class="error">Ошибка загрузки треков</div>';
-        });
+    console.log('Начинаем загрузку tracks.json...');
+    
+    fetch('tracks.json', {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        cache: 'no-cache'
+    })
+    .then(response => {
+        console.log('Получен ответ:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Данные успешно загружены:', data);
+        if (!data || !data.tracks || !Array.isArray(data.tracks)) {
+            throw new Error('Неверный формат данных');
+        }
+        tracks = data.tracks;
+        console.log(`Загружено ${tracks.length} треков`);
+        updatePagination();
+        displayTracks();
+    })
+    .catch(error => {
+        console.error('Ошибка загрузки треков:', error);
+        playlist.innerHTML = `<div class="error">Ошибка загрузки треков: ${error.message}</div>`;
+        
+        // Попробуем альтернативный метод загрузки для Safari
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'tracks.json', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    console.log('Данные загружены через XHR:', data);
+                    if (data && data.tracks && Array.isArray(data.tracks)) {
+                        tracks = data.tracks;
+                        updatePagination();
+                        displayTracks();
+                    }
+                } catch (e) {
+                    console.error('Ошибка парсинга JSON:', e);
+                }
+            }
+        };
+        xhr.send();
+    });
 
     // Функция отображения треков для текущей страницы
     function displayTracks() {
+        console.log('Отображаем треки...');
         const startIndex = (currentPage - 1) * tracksPerPage;
         const endIndex = startIndex + tracksPerPage;
         const currentTracks = tracks.slice(startIndex, endIndex);
+        console.log(`Треки для отображения (${startIndex}-${endIndex}):`, currentTracks);
 
         playlist.innerHTML = '';
+        if (currentTracks.length === 0) {
+            playlist.innerHTML = '<div class="error">Нет треков для отображения</div>';
+            return;
+        }
+
         currentTracks.forEach((track, index) => {
             const trackElement = document.createElement('div');
             trackElement.className = 'track';
@@ -58,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             playlist.appendChild(trackElement);
         });
+        console.log('Треки отображены');
     }
 
     // Обновление информации о пагинации
